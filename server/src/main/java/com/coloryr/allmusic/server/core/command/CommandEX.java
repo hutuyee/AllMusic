@@ -111,6 +111,9 @@ public class CommandEX {
             AllMusic.side.sendMessage(sender, AllMusic.getMessage().addMusic.cancel);
             return;
         }
+        System.out.println("[searchMusicApi] args = " + java.util.Arrays.toString(args));
+        System.out.println("[searchMusicApi] api = " + obj.api);
+        System.out.println("[searchMusicApi] search args = " + java.util.Arrays.toString(obj.args));
 
         MusicSearch.addSearch(obj);
     }
