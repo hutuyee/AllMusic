@@ -13,9 +13,11 @@ public class CommandSearchApi extends ACommand {
             AllMusic.side.sendMessage(sender, AllMusic.getMessage().search.noPer);
             return;
         }
+
         if (CommandEX.checkMoney(sender, name, AllMusic.getConfig().cost.searchCost)) {
             return;
         }
+
         if (CommandEX.cost(sender, name, AllMusic.getConfig().cost.searchCost,
                 AllMusic.getMessage().cost.search)) {
             return;
@@ -27,13 +29,15 @@ public class CommandSearchApi extends ACommand {
             return;
         }
 
-        // 去掉 args[0] 的子命令名 searchapi
+        // 去掉 args[0] 的子命令名 searchapi，保留 ["api名", "歌曲名"]
         String[] newArgs = new String[args.length - 1];
         System.arraycopy(args, 1, newArgs, 0, newArgs.length);
 
-        AllMusic.side.sendMessage(sender, AllMusic.getMessage().search.startSearch);
-        CommandEX.searchMusicApi(sender, name, newArgs, false);
         System.out.println("[CommandSearchApi] args.length = " + args.length);
         System.out.println("[CommandSearchApi] args = " + java.util.Arrays.toString(args));
+        System.out.println("[CommandSearchApi] newArgs = " + java.util.Arrays.toString(newArgs));
+
+        AllMusic.side.sendMessage(sender, AllMusic.getMessage().search.startSearch);
+        CommandEX.searchMusicApi(sender, name, newArgs, false);
     }
 }
