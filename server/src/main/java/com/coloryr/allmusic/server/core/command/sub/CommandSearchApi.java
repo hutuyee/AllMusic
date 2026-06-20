@@ -33,10 +33,6 @@ public class CommandSearchApi extends ACommand {
         String[] newArgs = new String[args.length - 1];
         System.arraycopy(args, 1, newArgs, 0, newArgs.length);
 
-        System.out.println("[CommandSearchApi] args.length = " + args.length);
-        System.out.println("[CommandSearchApi] args = " + java.util.Arrays.toString(args));
-        System.out.println("[CommandSearchApi] newArgs = " + java.util.Arrays.toString(newArgs));
-
         AllMusic.side.sendMessage(sender, AllMusic.getMessage().search.startSearch);
         CommandEX.searchMusicApi(sender, name, newArgs, false);
     }

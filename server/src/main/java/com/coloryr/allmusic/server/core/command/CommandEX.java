@@ -107,17 +107,9 @@ public class CommandEX {
         PlayerAddMusicObj obj = new PlayerAddMusicObj();
         obj.sender = sender;
         obj.name = name;
-
-        // 注意：这里不要去掉 args[0]
-        // 因为具体 API 的 search(name, false) 里会自己从下标 1 开始读关键词
         obj.args = args;
-
         obj.isDefault = isDefault;
         obj.api = args[0];
-
-        System.out.println("[searchMusicApi] args = " + java.util.Arrays.toString(args));
-        System.out.println("[searchMusicApi] api = " + obj.api);
-        System.out.println("[searchMusicApi] search args = " + java.util.Arrays.toString(obj.args));
 
         if (AllMusic.side.onMusicAdd(sender, obj)) {
             AllMusic.side.sendMessage(sender, AllMusic.getMessage().addMusic.cancel);
