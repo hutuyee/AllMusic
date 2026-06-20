@@ -99,13 +99,24 @@ public class CommandEX {
      * @param isDefault 是否是默认点歌方式
      */
     public static void searchMusicApi(Object sender, String name, String[] args, boolean isDefault) {
+        if (args == null || args.length < 2) {
+            AllMusic.side.sendMessage(sender, AllMusic.getMessage().musicPlay.error2);
+            return;
+        }
+
+        String apiname = args[0];
+
+        if (!AllMusic.MUSIC_APIS.containsKey(apiName)) {
+            AllMusic.side.sendMessage(sender, "不存在的音乐源：" + apiName);
+            return;
+        }
+
         PlayerAddMusicObj obj = new PlayerAddMusicObj();
         obj.sender = sender;
         obj.name = name;
-        obj.args = new String[args.length - 1];
-        System.arraycopy(args, 1, obj.args, 0, obj.args.length);
+        obj.args = args;
         obj.isDefault = isDefault;
-        obj.api = args[0];
+        obj.api = apiname;
 
         if (AllMusic.side.onMusicAdd(sender, obj)) {
             AllMusic.side.sendMessage(sender, AllMusic.getMessage().addMusic.cancel);
