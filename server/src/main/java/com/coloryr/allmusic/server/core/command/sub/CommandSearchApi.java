@@ -47,7 +47,7 @@ public class CommandSearchApi extends ACommand {
 
     @Override
     public List<String> tab(Object player, String name, String[] args, int index) {
-        if (index == 1) {
+        if (index == 1 && args.length <= index + 1) {
             return new ArrayList<>(AllMusic.MUSIC_APIS.keySet());
         }
         return Collections.emptyList();
