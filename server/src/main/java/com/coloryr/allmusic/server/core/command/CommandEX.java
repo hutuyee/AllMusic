@@ -75,12 +75,20 @@ public class CommandEX {
      * @param isDefault 是否是默认点歌方式
      */
     public static void searchMusic(Object sender, String name, String[] args, boolean isDefault) {
+
+        String apiname = AllMusic.getConfig().defaultApi;
+
+        if (!AllMusic.MUSIC_APIS.containsKey(apiname)) {
+            AllMusic.side.sendMessage(sender, AllMusic.getMessage().musicPlay.error2);
+            return;
+        }
+
         PlayerAddMusicObj obj = new PlayerAddMusicObj();
         obj.sender = sender;
         obj.name = name;
         obj.args = args;
         obj.isDefault = isDefault;
-        obj.api = AllMusic.getConfig().defaultApi;
+        obj.api = apiname;
 
         if (AllMusic.side.onMusicAdd(sender, obj)) {
             AllMusic.side.sendMessage(sender, AllMusic.getMessage().addMusic.cancel);
