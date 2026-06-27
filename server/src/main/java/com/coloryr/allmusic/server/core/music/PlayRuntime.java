@@ -279,11 +279,6 @@ public class PlayRuntime {
                     clear();
                 }
             } catch (Exception e) {
-                if (PlayMusic.nowPlayMusic != null) {
-                    String data = AllMusic.getMessage().musicPlay.emptyCanPlay;
-                    AllMusic.side.broadcastInTask(data.replace(ARG.musicId, PlayMusic.nowPlayMusic.getID()));
-                    PlayMusic.nowPlayMusic = null;
-                }
                 AllMusic.log.data("<red>歌曲播放出现错误");
                 e.printStackTrace();
             }
